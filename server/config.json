@@ -3,13 +3,13 @@
     "databases-for-redis": [{
       "credentials": {
         "db_type": "redis",
-        "uri": "redis://127.0.0.1:6379"
+        "uri": "redis://host.docker.internal:6379"
       }
     },
     {
       "credentials": {
         "db_type": "redis",
-        "uri": "redis://127.0.0.1:6380"
+        "uri": "redis://host.docker.internal:6380"
       }
     }]
   }

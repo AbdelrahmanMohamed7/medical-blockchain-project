@@ -47,8 +47,8 @@ Ensure your local config mappings point exactly to your environment target bound
 {
   "services": {
     "databases-for-redis": [
-      { "credentials": { "db_type": "redis", "uri": "redis://127.0.0.1:6379" } },
-      { "credentials": { "db_type": "redis", "uri": "redis://127.0.0.1:6380" } }
+      { "credentials": { "db_type": "redis", "uri": "redis://host.docker.internal:6379" } },
+      { "credentials": { "db_type": "redis", "uri": "redis://host.docker.internal:6380" } }
     ]
   }
 }
@@ -93,11 +93,11 @@ Once the compilation terminal logs settle and print `Application running...`, vi
 Production deployments utilize secure signed web tokens to evaluate permissions. To bypass external identity authenticators while developing locally, execute this terminal command to output a mock cryptographic string payload:
 
 ```bash
-node -e "console.log(Buffer.from(JSON.stringify({sid: 'sol-admin-cluster', uid: 'admin-dev', oid: 'org-master', name: 'Solution Admin'})).toString('base64'))"
+node -e "const payload={sid:'sol-admin-cluster',uid:'admin-dev',oid:'org-master',name:'Solution Admin'}; const b=o=>Buffer.from(JSON.stringify(o)).toString('base64url'); console.log(b({alg:'none',typ:'JWT'})+'.'+b(payload)+'.signature')"
 
 ```
 
-Copy the string output from your terminal and paste it into the **Solution Admin** login box token field at `http://localhost:8080` to authenticate and unlock permission workflows!
+Copy the JWT-shaped output from your terminal and paste it into the **Solution Admin** login box token field at `http://localhost:8080` to authenticate and unlock permission workflows!
 
 ---
 
