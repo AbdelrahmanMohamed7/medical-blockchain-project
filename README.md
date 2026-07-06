@@ -107,9 +107,3 @@ To drop the microservice bindings and turn off all background databases to clear
 
 ```bash
 docker stop medrec-vue medrec-server redis-user-to-doc redis-doc-to-user
-
-```
-
-```
-
-```
